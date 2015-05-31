@@ -7,7 +7,7 @@ if [ -d "$Dpath" ];then #if checks if directory is present or not
 	if test -f $Dpath/$Fname; then #if checks if file is present or not
 	#if yes	
 		read -p "Enter the line number to be deleted :" Lno #reads the line number to be deleted
-		sed "$Lno"d $Dpath/$Fname #sed commands delete the mentioned file number from file 
+		sed -i "$Lno"d $Dpath/$Fname | echo "Line is deleted" #sed commands delete the mentioned file number from file , echo prints the statement
 	else
 	#if no
 		echo "File doesnot exsist" #echo prints statement

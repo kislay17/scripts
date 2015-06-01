@@ -7,7 +7,7 @@ if [ -d "$Dir" ];then #checks Directory Availability
 	if test -f $Dir/$Fname ;then #checks file availability
 	#if yes
 		read -p "Enter the line number :" Lno #reads line number
-		if [ awk 'NR=='$Lno $Dir/$Fname ];then #checks Line number availability
+		if test "wc -l $Dir/Fname" -ge "Lno";then #checks Line number availability
 		#if yes
 			read -p "Enter Line : " Line #reads line
 			sed -i "$Lno"a$Line $Dir/$Fname #sed add the line before  the specified line

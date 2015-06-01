@@ -20,11 +20,7 @@ if [ -d "$Dir" ];then #if checks if directory is present or not
 		echo "File doesnot exsist"
 	fi
 else
-	echo "Directory doesnot exsist"
-fi 
-
-
-echo "Directory doesnot exsist" #prints statement, if first if condition sets no
-
-else
-fi 
+#if no
+	echo "Directory doesnot exsist" #prints statement, if first if condition sets no
+fi
+ 

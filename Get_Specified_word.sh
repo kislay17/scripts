@@ -11,10 +11,17 @@ if [ -d "$Dir" ];then #check if Directory is present or not
 		if test "$Lno" -le "$a";then #checks if line is present or not
 		#if yes
 			read -p "Enter word position :" Rp #reads word position
-			sed -n "$Lno"p $Dir/$Fname | awk "{print $"$Rp"}" #sed commands get the specific line, awk command prints the specific colummn
+			b=`sed -n "$Lno"p $Dir/$Fname | wc -w` #stores number of words in afile
+			if test "$Rp" -le "$b";then #checks if specified word is present or not
+			#if yes 
+				sed -n "$Lno"p $Dir/$Fname|awk "{print $"$Rp"}" #sed command finds specific line number ,awk command prints the specific colummn
+			else
+			#if no
+				echo "Specified word position doesnot exsist"
+			fi
 		else
 		#if no
-			echo "Line is not present"
+			echo "Line doesnot present"
 		fi
 	else
 	#if no

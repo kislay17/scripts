@@ -1,24 +1,12 @@
 #!/bin/bash
-#Add a line below a line 
-read -p "Enter the Dir path :" Dir #reads Directory path
-if [ -d "$Dir" ];then #checks Directory Availability
-#if yes	
-	read -p "Enter File name :" Fname #reads file name
-	if test -f $Dir/$Fname ;then #checks file availability
-	#if yes
-		a=`wc -l < $Dir/$Fname` #reads the maximum line number
-		read -p "Enter the line number :" Lno #reads line number
-		if test "$a" -ge $Lno;then #checks Line number availability
-		#if yes
-			read -p "Enter Line : " Line #reads line
-			sed -i "$Lno"a$Line $Dir/$Fname #sed add the line before  the specified line
-			echo "Line entered" #prints message
-		else
-			echo "Line number doesnot exsist" #prints message
-		fi
-	else
-		echo "File not found" #prints message
-	fi
-else
-	echo "Directory not found" #prints message
-fi
+source /home/vagrant/scripts/Check.sh #source command inherits all the function of Check.sh script
+read -p "Enter the Directory Path :" Dir #reads the Directory Path
+Dir_check $Dir #calls Dir_check functions for Directory exsistence
+	read -p "Enter the File name :" Fname #reads the file name
+	File_check $Dir/$Fname #calls File_check function for file exsistence
+		read -p "Enter the Line number : " Lno #reads the line number below which line is to be inserted
+		a=`wc -l < $Dir/$Fname` #reads the maximum number of lines of the file
+		Line_no $Lno $a #calls Line_no function to check Line number exsistence
+			read -p "Enter the Line :" Line #reads the line
+			sed -i "$Lno"a$Line $Dir/$Fname #insert the line below the line
+			echo "Line inserted"

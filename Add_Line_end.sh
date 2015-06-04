@@ -1,19 +1,10 @@
 #!/bin/bash
+source /home/vagrant/scripts/Check.sh #source command inherit functions of Check.sh script
 #Adds a line at an end
 read -p "Enter the directory path :" Dir #reads Directory path
-if [ -d "$Dir" ];then #checks if Directory is present or not
-#if yes
+Dir_check $Dir #calls Dir_check function from check.sh for directory exsistence
 	read -p "Enter the file name :" Fname #reads the file name
-	if test -f $Dir/$Fname;then #checks if file is present or not
-	#if yes
+	File_check $Dir/$Fname#calls File_check function for file exsistence
 		read -p "Enter the Line :" Line #reads the Line 
 		sed -i "$"a$Line $Dir/$Fname #insert a line at the end of the file
-		echo "Line inserted"
-	else
-	#if no
-		echo "File is not present" #prints statement		
-	fi
-else
-#if no
-	echo "Directory is not present"
-fi
+

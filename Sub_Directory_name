@@ -1,0 +1,6 @@
+#!/bin/bash
+source /home/vagrant/scripts/Check.sh #source commands inherits functions from Check.sh script
+#return name and size of directories
+read -p "Enter the Directory Path :" Path #reads the Path of Directory
+Dir_check $Path #calls Dir_check function for exsistence of Directory
+	du -h $Path #du command returns the size and name of sub directories , -h hides all others informations
